@@ -1,7 +1,22 @@
-const apiKey = 'your-api-key'; // Replace with your OpenAI API key
+
+const apiKeyInput = document.getElementById('api-key');
+
 const chatDiv = document.getElementById('chat');
 const inputField = document.getElementById('input');
 const sendButton = document.getElementById('send');
+
+// Load saved key on page load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedKey = localStorage.getItem('openai-api-key');
+    if (savedKey) {
+        apiKeyInput.value = savedKey;
+    }
+});
+
+// Save key when changed
+apiKeyInput.addEventListener('change', () => {
+    localStorage.setItem('openai-api-key', apiKeyInput.value.trim());
+});
 
 const messages = [{ role: 'system', content: 'You are a helpful assistant.' }];
 
