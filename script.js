@@ -37,7 +37,7 @@ async function sendMessage() {
         }, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Authorization': `Bearer ${apiKeyInput.value.trim()}`
             }
         });
 
