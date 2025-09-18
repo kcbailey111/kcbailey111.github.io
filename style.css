@@ -1,4 +1,302 @@
-body { font-family: Arial, sans-serif; margin: 20px; }
-#chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
-#input { width: 80%; }
-#send { width: 18%; }
+/* OpenAI Chat Application Styles - Matching Main Site Design */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+h2 {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+#api-key {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    display: block;
+    padding: 15px 25px;
+    font-size: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    outline: none;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+#api-key:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: white;
+    border-color: #64b5f6;
+}
+
+#api-key::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+#chat {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    min-height: 450px;
+    max-height: 500px;
+    overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+#chat::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+#chat::-webkit-scrollbar-thumb {
+    background: #1a237e;
+    border-radius: 4px;
+}
+
+#chat::-webkit-scrollbar-thumb:hover {
+    background: #3949ab;
+}
+
+.message {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    max-width: 80%;
+    word-wrap: break-word;
+    animation: messageSlide 0.3s ease-out;
+    line-height: 1.6;
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-message {
+    background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+    color: white;
+    margin-left: auto;
+    text-align: right;
+    box-shadow: 0 2px 10px rgba(26, 35, 126, 0.3);
+}
+
+.ai-message {
+    background: #f8f9fa;
+    color: #333;
+    margin-right: auto;
+    border: 1px solid #e3f2fd;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.input-container {
+    display: flex;
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: center;
+    animation: fadeInUp 1s ease 0.8s both;
+}
+
+#input {
+    flex: 1;
+    padding: 15px 25px;
+    font-size: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#input:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: white;
+    border-color: #64b5f6;
+}
+
+#input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+#send {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #64b5f6;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+}
+
+#send:hover {
+    background: #42a5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(100, 181, 246, 0.4);
+}
+
+#send:active {
+    transform: translateY(0);
+}
+
+/* Loading animation for when AI is responding */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(26, 35, 126, 0.3);
+    border-radius: 50%;
+    border-top-color: #1a237e;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error message styling */
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Success message styling */
+.success-message {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 1.1rem;
+    }
+    
+    .input-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #send {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .message {
+        max-width: 95%;
+        padding: 12px 15px;
+    }
+    
+    #chat {
+        padding: 20px;
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #chat {
+        min-height: 300px;
+        padding: 15px;
+    }
+    
+    #api-key,
+    #input {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    
+    #send {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+    
+    .message {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
