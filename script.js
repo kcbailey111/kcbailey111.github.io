@@ -1,6 +1,5 @@
 
 const apiKeyInput = document.getElementById('api-key');
-
 const chatDiv = document.getElementById('chat');
 const inputField = document.getElementById('input');
 const sendButton = document.getElementById('send');

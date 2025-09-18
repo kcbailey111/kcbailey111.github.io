@@ -140,6 +140,22 @@ h2 {
     animation: fadeInUp 1s ease 0.8s both;
 }
 
+#send {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #64b5f6;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
+    margin: 0 auto; /* Add this line */
+}
+
 #input {
     flex: 1;
     padding: 15px 25px;
