@@ -23,6 +23,10 @@ const messages = [{ role: 'system', content: 'You are a helpful assistant.' }];
 async function sendMessage() {
     const userInput = inputField.value;
     if (!userInput) return;
+     if (!apiKey) {
+        chatDiv.innerHTML += `<p><strong>Error:</strong> API key is missing.</p>`;
+        return;
+    }
 
     // Display user message
     chatDiv.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
