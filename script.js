@@ -1,3 +1,15 @@
+    function escapeHTML(str) {
+        return str.replace(/[&<>"']/g, function (m) {
+            return ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+                })[m];
+            });
+}
+    
     const apiKeyInput = document.getElementById('api-key');
     const chatDiv = document.getElementById('chat');
     const inputField = document.getElementById('input');
