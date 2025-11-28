@@ -592,8 +592,9 @@ nav.container{
             justify-content: center;
         }
 
+        /* Profile Image Placeholder */
         .profile-placeholder {
-            width: 220px;
+            width: 220px; /* Increased size */
             height: 220px;
             border-radius: 50%;
             overflow: hidden;
@@ -817,5 +818,23 @@ nav.container{
 
             nav ul li {
                 margin: 5px 0;
+            }
+        }
+
+        /* Desktop nav: only use horizontal flex layout on larger screens */
+        @media (min-width: 769px) {
+            nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0 20px;
+            }
+
+            header {
+                /* keep header styles for desktop here if needed */
             }
         }
