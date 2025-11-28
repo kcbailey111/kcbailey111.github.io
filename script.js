@@ -18,17 +18,42 @@
     
         /* JavaScript - Easy to extract to script.js */
 
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('nav ul');
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+        // Hamburger Menu Toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('nav ul');
+const body = document.body;
+
+navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    navToggle.classList.toggle('active');
+    body.classList.toggle('menu-open');
+});
+
+// Close menu when clicking on a link
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        body.classList.remove('menu-open');
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (navMenu.classList.contains('open') && 
+        !navMenu.contains(e.target) && 
+        !navToggle.contains(e.target)) {
+        navMenu.classList.remove('open');
+        navToggle.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
