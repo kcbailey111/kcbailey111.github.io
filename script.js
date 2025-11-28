@@ -106,6 +106,7 @@
             }
             type();
         }
+        
 
         // Initialize typing effect on page load
         window.addEventListener('load', function() {
