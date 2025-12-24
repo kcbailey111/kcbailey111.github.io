@@ -454,17 +454,24 @@ nav ul li a:hover {
 
 /* Resume Button Styling */
 .btn-resume {
-    background: #43a047;
+    /* Match primary button look */
+    background: #64b5f6;
     color: white;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(100, 181, 246, 0.3);
 }
 
 .btn-resume:hover {
-    background: #388e3c;
+    background: #42a5f5;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(67, 160, 71, 0.3);
+    box-shadow: 0 8px 20px rgba(100, 181, 246, 0.4);
 }
 
 .btn-resume i {
