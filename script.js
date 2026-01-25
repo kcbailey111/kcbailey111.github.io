@@ -110,8 +110,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }, observerOptions);
 
-        // Observe all skill categories and project cards
-        document.querySelectorAll('.skill-category, .project-card').forEach(card => {
+        // Observe all skill categories, class cards, and project cards
+        document.querySelectorAll('.skill-category, .class-card, .project-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
