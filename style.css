@@ -702,7 +702,13 @@ section h2::after {
     color: #555;
     font-size: 0.95rem;
     line-height: 1.5;
-    margin: 0;
+    margin: 0 0 14px;
+}
+
+.cert-content .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 /* Projects Section */
